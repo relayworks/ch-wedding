@@ -160,7 +160,7 @@ export default function Gallery() {
           <button
             type="button"
             onClick={() => setExpanded(true)}
-            className="rounded-[30px] border-[0.5px] bg-white px-[13px] py-[6px] font-batang text-[12px] leading-[22px] text-black"
+            className="rounded-[30px] border-[0.5px]  px-[13px] py-[6px] mb-[20px] font-batang text-[12px] leading-[22px] text-black"
           >
             더보기 
           </button>

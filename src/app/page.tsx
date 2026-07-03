@@ -96,12 +96,12 @@ export default function Home() {
           />
         </div>
 
-        <div className="mt-[10px] flex justify-center gap-[10px]">
+        <div className="mt-[5px] flex justify-center gap-[5px]">
           <a
             href={KAKAO_MAP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-[170px] rounded-[10px] bg-[#ffffeb] p-[10px] font-batang text-[14px] leading-[28px] text-black"
+            className="w-full rounded-[10px] bg-[#ffffeb] p-[10px] font-batang text-[14px] leading-[28px] text-black"
           >
             카카오 지도 열기
           </a>
@@ -109,7 +109,7 @@ export default function Home() {
             href={NAVER_MAP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-[170px] rounded-[10px] bg-[#ffffeb] p-[10px] font-batang text-[14px] leading-[28px] text-black"
+            className="w-full rounded-[10px] bg-[#ffffeb] p-[10px] font-batang text-[14px] leading-[28px] text-black"
           >
             네이버 지도 열기
           </a>
