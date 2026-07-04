@@ -28,9 +28,9 @@ export const metadata: Metadata = {
     description: "2026년 9월 5일 토요일 오후 2시, 잠실 더컨벤션 아모르홀에서 김찬혁과 김혜민의 결혼식이 있습니다.",
     images: [
       {
-        url: "/images/wedding/hero.png",
-        width: 1500,
-        height: 2250,
+        url: "/OGimage.jpg",
+        width: 1200,
+        height: 630,
         alt: "김찬혁, 김혜민 웨딩 사진",
       },
     ],
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "김찬혁 ♥ 김혜민 결혼합니다",
     description: "2026년 9월 5일 토요일 오후 2시, 잠실 더컨벤션 아모르홀에서 김찬혁과 김혜민의 결혼식이 있습니다.",
-    images: ["/images/wedding/hero.png"],
+    images: ["/OGimage.jpg"],
   },
 };
 
