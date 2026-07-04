@@ -1,6 +1,6 @@
 "use client";
 
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 
 type SubmitState = "idle" | "preparing" | "submitting" | "success" | "error";
 
@@ -13,6 +13,7 @@ type PreparedPhoto = {
 const MAX_IMAGE_SIZE = 1600;
 const JPEG_QUALITY = 0.82;
 const MAX_PHOTO_COUNT = 10;
+const PHOTO_UPLOAD_OPEN_AT = new Date("2026-09-04T15:00:00.000Z").getTime(); // 2026-09-05 00:00 KST
 
 async function preparePhoto(file: File): Promise<PreparedPhoto> {
   const image = await new Promise<HTMLImageElement>((resolve, reject) => {
@@ -65,7 +66,20 @@ async function parseResponse(response: Response) {
 export default function PhotoUpload() {
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [message, setMessage] = useState("");
+  const [isUploadOpen, setIsUploadOpen] = useState(false);
   const isBusy = submitState === "preparing" || submitState === "submitting";
+  const isDisabled = !isUploadOpen || isBusy;
+
+  useEffect(() => {
+    function updateUploadOpen() {
+      setIsUploadOpen(Date.now() >= PHOTO_UPLOAD_OPEN_AT);
+    }
+
+    updateUploadOpen();
+    const timer = window.setInterval(updateUploadOpen, 60 * 1000);
+
+    return () => window.clearInterval(timer);
+  }, []);
 
   async function uploadPhoto(photo: PreparedPhoto) {
     const response = await fetch("/api/photo-upload", {
@@ -124,15 +138,16 @@ export default function PhotoUpload() {
   return (
     <div className="mt-6 flex flex-col items-center">
       <label
+        aria-disabled={isDisabled}
         className={`rounded-[5px] border-[0.5px] border-black bg-[#ffffeb] p-[10px] font-batang text-[14px] leading-[28px] text-black ${
-          isBusy ? "pointer-events-none opacity-60" : ""
+          isDisabled ? `pointer-events-none ${isBusy ? "opacity-60" : "opacity-30"}` : ""
         }`}
       >
         <input
           type="file"
           accept="image/*"
           multiple
-          disabled={isBusy}
+          disabled={isDisabled}
           className="sr-only"
           onChange={handleFileChange}
         />
